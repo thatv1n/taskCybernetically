@@ -72,7 +72,7 @@ export const Table = () => {
 							</tr>
 
 							{stocks.map((item, i) => (
-								<ItemTable item={item} i={i} key={i} />
+								<ItemTable item={item} index={i} key={i} />
 							))}
 							{provided.placeholder}
 						</tbody>

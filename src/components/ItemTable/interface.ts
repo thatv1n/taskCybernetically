@@ -1,4 +1,5 @@
 export interface IItemTable{
+  id?:number
   key:string,
   entityName:string,
   EntityAddressCityOrTown:string
@@ -9,6 +10,6 @@ export interface IItemTable{
 }
 
 export interface ITest{
-  i:number,
+  index:number,
   item:IItemTable
 }

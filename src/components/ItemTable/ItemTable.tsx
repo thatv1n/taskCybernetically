@@ -5,9 +5,9 @@ import { ITest } from './interface';
 
 import './style.scss';
 
-export const ItemTable: FC<ITest> = ({ item, i }) => {
+export const ItemTable: FC<ITest> = ({ item, index }) => {
 	return (
-		<Draggable draggableId={`${i}`} key={i} index={i}>
+		<Draggable draggableId={`${index}`} key={index} index={index}>
 			{(provided) => (
 				<tr
 					{...provided.draggableProps}
@@ -15,7 +15,7 @@ export const ItemTable: FC<ITest> = ({ item, i }) => {
 					ref={provided.innerRef}
 					className='item'
 				>
-					<td>{i + 1}</td>
+					<td>{index + 1}</td>
 					<td>{item.key}</td>
 					<td>{item.entityName || '-'}</td>
 					<td>{item.EntityAddressCityOrTown || '-'}</td>
