@@ -1,0 +1,65 @@
+@import '../../style/variables.scss';
+
+.table {
+	margin: 0;
+	padding: 0;
+	border-collapse: separate;
+	border-spacing: 5px;
+	background: $bg;
+	color: $black;
+	border: 16px solid $bg;
+	border-radius: 20px;
+	min-height: 515px;
+	position: relative;
+	max-width: 1211px;
+	width: 100%;
+
+	th {
+		text-align: start;
+		padding: 5px;
+		font-size: 18px;
+		font-weight: 700;
+	}
+	&__body {
+		td {
+			background: $orange;
+			padding: 10px;
+		}
+		&:hover {
+			cursor: pointer;
+			td {
+				background: $darkOrange;
+			}
+		}
+	}
+
+	&__item {
+		td {
+			background: $orange;
+			padding: 10px;
+		}
+		&:hover {
+			cursor: pointer;
+			td {
+				background: $darkOrange;
+			}
+		}
+	}
+
+	&__body_loading {
+		position: relative;
+	}
+
+	&__loading {
+		position: absolute;
+		top: 5px;
+	}
+
+	&__buttons {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-column-gap: 30%;
+		width: 30%;
+		margin: 20px auto;
+	}
+}

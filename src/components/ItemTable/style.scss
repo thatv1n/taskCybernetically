@@ -1,0 +1,14 @@
+@import '../../style/variables.scss';
+
+.item {
+	td {
+		background: $orange;
+		padding: 10px;
+	}
+	&:hover {
+		cursor: pointer;
+		td {
+			background: $darkOrange;
+		}
+	}
+}
