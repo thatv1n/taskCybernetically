@@ -1,9 +1,8 @@
 export interface IItemTable {
   id: string
   key: string,
-  entityName: string,
-  EntityAddressCityOrTown: string
-  AssetsCurrent: number
+  AssetsCurrent: string,
+  IncomeTaxExpenseBenefit: string
   NetIncomeLoss: number
   OperatingIncomeLoss: number
 

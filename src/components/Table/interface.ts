@@ -1,10 +1,9 @@
 export interface IStock {
   id: string
   key: string;
-  entityName: string;
-  EntityAddressCityOrTown: string;
+  AssetsCurrent: string;
+  IncomeTaxExpenseBenefit: string;
   OperatingIncomeLoss: number;
-  AssetsCurrent: number;
   NetIncomeLoss: number;
   Assets: number;
 }

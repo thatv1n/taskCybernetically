@@ -64,9 +64,8 @@ export const Table = () => {
 							<tr className='table__header'>
 								<th>№</th>
 								<th>Key</th>
-								<th>Entity Name</th>
-								<th>Entity Address City Or Town</th>
 								<th>Assets Current</th>
+								<th>Income Tax Expense Benefit</th>
 								<th>Net Income Loss</th>
 								<th>Operating Income Loss</th>
 							</tr>

@@ -17,9 +17,8 @@ export const ItemTable: FC<ITest> = ({ item, index }) => {
 				>
 					<td>{item.id}</td>
 					<td>{item.key}</td>
-					<td>{item.entityName || '-'}</td>
-					<td>{item.EntityAddressCityOrTown || '-'}</td>
 					<td>{item.AssetsCurrent || '-'}</td>
+					<td>{item.IncomeTaxExpenseBenefit || '-'}</td>
 					<td>{item.NetIncomeLoss || '-'}</td>
 					<td>{item.OperatingIncomeLoss || '-'}</td>
 				</tr>
