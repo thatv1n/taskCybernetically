@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
@@ -26,19 +26,19 @@ export const Table = () => {
 		dispatch(fetchStock(obj));
 	}, [currentPage]);
 
-	const onDragEnd = (result: any) => {
+	const onDragEnd = (result: DropResult) => {
 		const { destination, source, draggableId } = result;
 
 		if (!destination) {
 			return;
 		}
 
-		if (destination.draggableId === source.draggableId && destination.index === source.index) {
+		if (destination.index === source.index) {
 			return;
 		}
 		const findElem = stocks[source.index];
 		const newList = [...stocks];
-		newList.splice(draggableId, 1);
+		newList.splice(Number(draggableId), 1);
 		newList.splice(destination.index, 0, findElem);
 
 		dispatch(setFormattedList(newList));
