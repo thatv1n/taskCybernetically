@@ -1,4 +1,5 @@
-export interface  IStock {
+export interface IStock {
+  id: string
   key: string;
   entityName: string;
   EntityAddressCityOrTown: string;
@@ -8,12 +9,12 @@ export interface  IStock {
   Assets: number;
 }
 
-export interface IStocksReducer{
-  items: IStock[] ,
-  isLoading: boolean,
+export interface IStocksReducer {
+  items: IStock[],
   error: string | null,
+  currentPage: number
 }
 
-export interface IParams{
-  limit: number, offset: number
+export interface IParams {
+  offset: number
 }

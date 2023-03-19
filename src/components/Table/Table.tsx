@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { Button } from '../Button';
 
-import { stocksSelector } from './selector';
+import { currentPageSelector, stocksSelector } from './selector';
 
 import { fetchStock } from './thunk';
 
 import { ItemTable } from '../ItemTable/ItemTable';
 
-import { setFormattedList } from './slice';
+import { setCurrentPage, setFormattedList } from './slice';
 
 import './style.scss';
 
 export const Table = () => {
 	const stocks = useAppSelector(stocksSelector);
+	const currentPage = useAppSelector(currentPageSelector);
 
 	const dispatch = useAppDispatch();
 
-	const [params, setParams] = useState({ limit: 10, offset: 0 });
-
 	useEffect(() => {
-		dispatch(fetchStock(params));
-	}, [params]);
+		const obj = { offset: currentPage };
+		dispatch(fetchStock(obj));
+	}, [currentPage]);
 
 	const onDragEnd = (result: any) => {
 		const { destination, source, draggableId } = result;
@@ -45,10 +45,10 @@ export const Table = () => {
 	};
 
 	const prev = () => {
-		if (params.offset >= 0) setParams((item) => ({ ...item, offset: item.offset - 10 }));
+		dispatch(setCurrentPage(currentPage - 10));
 	};
 	const next = () => {
-		setParams((item) => ({ ...item, offset: item.offset + 10 }));
+		dispatch(setCurrentPage(currentPage + 10));
 	};
 
 	if (!stocks.length) {
@@ -80,7 +80,7 @@ export const Table = () => {
 				</Droppable>
 			</table>
 			<div className='table__buttons'>
-				<Button click={prev} disabled={params.offset === 0}>
+				<Button click={prev} disabled={currentPage === 0}>
 					Prev
 				</Button>
 				<Button click={next}>Next</Button>

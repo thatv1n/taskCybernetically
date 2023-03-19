@@ -6,7 +6,7 @@ export const apiStock = {
     async fetch(params:IParams) {
         try {
             const {data} = await instance.get(
-                `/stable/time-series/REPORTED_FINANCIALS?filter=key,entityName,EntityAddressCityOrTown,InvestmentIncomeInterestAndDividend,OperatingIncomeLoss,AssetsCurrent,NetIncomeLoss,Asset&sort=asc&token=${process.env.REACT_APP_API_KEY}&limit=${params.limit}&offset=${params.offset}            
+                `/stable/time-series/REPORTED_FINANCIALS?filter=key,entityName,EntityAddressCityOrTown,InvestmentIncomeInterestAndDividend,OperatingIncomeLoss,AssetsCurrent,NetIncomeLoss,Asset&sort=asc&token=${process.env.REACT_APP_API_KEY}&limit=10&offset=${params.offset}            
                 `,
             );
             return data;

@@ -15,7 +15,7 @@ export const ItemTable: FC<ITest> = ({ item, index }) => {
 					ref={provided.innerRef}
 					className='item'
 				>
-					<td>{index + 1}</td>
+					<td>{item.id}</td>
 					<td>{item.key}</td>
 					<td>{item.entityName || '-'}</td>
 					<td>{item.EntityAddressCityOrTown || '-'}</td>

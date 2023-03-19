@@ -3,14 +3,14 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import StocksSlice from '../components/Table/slice';
 
 
-const store = combineReducers({
-  stocks:StocksSlice
+const rootReducer = combineReducers({
+  stocks: StocksSlice
 });
 
-const data = configureStore({
-  reducer: store,
+const store = configureStore({
+  reducer: rootReducer,
 });
 
-export type RootState = ReturnType<typeof data.getState>;
-export type AppDispatch = typeof data.dispatch;
-export default data;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export default store;

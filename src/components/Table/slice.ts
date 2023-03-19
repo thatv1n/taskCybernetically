@@ -1,40 +1,45 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { generateItemId, removeLastZero } from '../../utils';
 import { IStock, IStocksReducer } from './interface';
 import { fetchStock } from './thunk';
 
-
 const initialState: IStocksReducer = {
-    items: [],
-    isLoading: false,
-    error: null,
+  items: [],
+  error: null,
+  currentPage: 0,
 };
 
 const StocksSlice = createSlice({
-    name: 'stocks',
-    initialState,
-    reducers: {
-     setFormattedList:(state, action: PayloadAction<IStock[]>) => {
+  name: 'stocks',
+  initialState,
+  reducers: {
+    setFormattedList: (state, action: PayloadAction<IStock[]>) => {
       state.items = action.payload;
+    },
+    setCurrentPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
   },
-    },
-    extraReducers: (builder) => {
-        builder.addCase(fetchStock.pending, (state) => {
-            state.isLoading = true;
-        });
+  extraReducers: (builder) => {
+    builder.addCase(fetchStock.fulfilled, (state, { payload }) => {
+      state.items = payload.map((item, i) => {
+        const currentPageString = state.currentPage.toString();
+        let page;
+        currentPageString.length <= 2 ?
+          page = Number(currentPageString.replace(/0/g, "")) :
+          page = Number(removeLastZero(state.currentPage));
+        const itemIndex = i + 1;
+        item.id = generateItemId(page, itemIndex);
+        return item;
+      })
+    });
 
-        builder.addCase(fetchStock.fulfilled, (state, {payload}) => {
-            state.isLoading = false;
-            state.items = payload;
-        });
-
-        builder.addCase(fetchStock.rejected,
-            (state, {payload}) => {
-                state.isLoading = false;
-                if (payload) state.error = `${payload}`;
-            });
-    },
+    builder.addCase(fetchStock.rejected, (state, { payload }) => {
+      if (payload) state.error = `${payload}`;
+    });
+  },
 });
 
-export const {setFormattedList } = StocksSlice.actions
+export const { setFormattedList, setCurrentPage } = StocksSlice.actions;
 
 export default StocksSlice.reducer;
