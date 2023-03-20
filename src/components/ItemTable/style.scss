@@ -5,6 +5,9 @@
 		background: $orange;
 		padding: 10px;
 	}
+	td:nth-child(2) {
+		min-width: 70px;
+	}
 	&:hover {
 		cursor: pointer;
 		td {
